@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="view_ptoduct_template_article" model="ir.ui.view">
+            <field name="name">product.template.volume</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="article_no" />
+                    <field name="finish_no" />
+                    <field name="sqm_box" />
+                    <field name="pcs_box" />
+                    <field name="show_bol" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_ptoduct_product" model="ir.ui.view">
+            <field name="name">product.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="article_no" />
+                    <field name="finish_no" />
+                    <field name="sqm_box" />
+                    <field name="pcs_box" />
+                    <field name="show_bol" />
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_sale_order_view" model="ir.ui.view">
+            <field name="name">Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="address" />
+                    <field name="mobile_no" />
+                    <field name="email_id" />
+                </field>
+                <field name="payment_term_id" position="after">
+                    <field name="architect" />
+                    <field name="project_description" />
+                </field>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                    <field name="number" string="Sl No." align="left" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="article_no" />
+                    <field name="finish_no" />
+                    <field name="total_sqm"/>
+                    <field name="total_pcs"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>
