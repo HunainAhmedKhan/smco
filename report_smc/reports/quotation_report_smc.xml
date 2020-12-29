@@ -181,7 +181,7 @@
                             <td width="20%" style="padding-left:30px; border-bottom:1px solid black;">
                                 <t t-set="grand_total"
                                    t-value="(o.amount_untaxed + o.amount_discount)"/>
-                                <t t-esc="grand_total" t-options='{"widget": "float", "precision": 0}'//>
+                                <t t-esc="grand_total" t-options='{"widget": "float", "precision": 0}'/>
                             </td>
                         </tr>
                         <tr width="100%">
