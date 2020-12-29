@@ -165,7 +165,7 @@
                                         </strong>
                                         <span style="padding-right:25px;"
                                               t-esc="current_subtotal"
-                                              t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
+                                              t-options='{"widget": "float", "precision": 2}'
                                         />
                                     </td>
                                 </tr>
@@ -181,7 +181,7 @@
                             <td width="20%" style="padding-left:30px; border-bottom:1px solid black;">
                                 <t t-set="grand_total"
                                    t-value="(o.amount_untaxed + o.amount_discount)"/>
-                                <t t-esc="grand_total"/>
+                                <t t-esc="grand_total" t-options='{"widget": "float", "precision": 2}'//>
                             </td>
                         </tr>
                         <tr width="100%">
