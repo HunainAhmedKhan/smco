@@ -139,7 +139,7 @@
                                                     <span t-field="line.finish_no"/>
                                                 </td>
                                                 <td class="div_tb" style="padding:0px; height:0%;">
-                                                    <span t-field="line.price_unit"/>
+                                                    <span t-field="line.product_uom"/>
                                                 </td>
                                                 <td class="div_tb" style="padding:0px; height:0%;">
                                                     <span t-field="line.product_uom_qty"/>
