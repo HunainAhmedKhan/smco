@@ -32,7 +32,7 @@
                         }
                         .div_headings {
                         border:1px solid;
-                        text-align: center;
+                        text-align: left;
                         font-size:12px;
                         margin-top:2em;
                         vertical-align:middle;
@@ -288,24 +288,23 @@
                             <div class="container">
                                 <div>
                                     <div class="col-12" style="padding-left:0px; margin-left:-10px;">
-                                        <p style="font-weight:bold;color:black; font-size:13px;">Terms And Condition</p>
+                                        <p style="font-weight:bold;color:black; font-size:13px;">Terms And Condition</p><br></br>
+                                         <span t-field="o.note"/>
                                     </div>
                                 </div>
-                                <div>
-                                    <span t-field="o.note"/>
-                                </div>
+                              
                             </div>
                             <br/>
                         </div>
                         <div class="container row" style="margin-top:4em; font-size:15px;">
                             <div class="col-4">
-                                _______________________________
+                                ____________________________
                             </div>
                             <div class="col-4">
-                                _______________________________
+                                ____________________________
                             </div>
                             <div class="col-4">
-                                _______________________________
+                                ____________________________
                             </div>
                         </div>
                         <div class="container row" style="font-size:15px;">
