@@ -255,7 +255,7 @@
                             <div class="container">
                                 <div>
                                     <div class="col-12" style="padding-left:0px; margin-left:-20px;">
-                                        <p style="font-weight:bold;color:black; font-size:13px;">Terms And Condition</p><br></br>
+                                        <p style="font-weight:bold;color:black; font-size:13px;">Terms And Condition</p>
                                          <span t-field="o.note"/>
                                     </div>
                                 </div>
