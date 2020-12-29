@@ -32,7 +32,7 @@
                         }
                         .div_headings {
                         border:1px solid;
-                        text-align: center;
+                        text-align: left;
                         font-size:12px;
                         margin-top:2em;
                         vertical-align:middle;
