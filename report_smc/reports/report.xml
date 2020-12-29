@@ -13,7 +13,7 @@
         <field name="margin_left">5</field>
         <field name="margin_right">5</field>
         <field name="header_line" eval="False"/>
-        <field name="header_spacing">43</field>
+        <field name="header_spacing">20</field>
         <field name="dpi">90</field>
     </record>
     <report
@@ -28,7 +28,7 @@
     <report
         id="report_quotation_smc_without_discount"
         model="sale.order"
-        string="SO with Img W/O discount"
+        string="SO Img W/O discount"
         report_type="qweb-pdf"
         name="report_smc.quotation_smc_report_without_dis"
         file="report_smc.quotation_smc_report_without_dis"
