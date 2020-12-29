@@ -165,7 +165,7 @@
                                         </strong>
                                         <span style="padding-right:25px;"
                                               t-esc="current_subtotal"
-                                              t-options='{"widget": "float", "precision": 2}'
+                                              t-options='{"widget": "float", "precision": 0}'
                                         />
                                     </td>
                                 </tr>
