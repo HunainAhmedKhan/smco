@@ -24,7 +24,7 @@
                             <br/>
                             <t t-esc="company.street"/>
                             <br/>
-                            blah blah blah
+                          
                         </td>
                     </tr>
                 </table>
