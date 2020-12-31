@@ -1,0 +1,212 @@
+<odoo>
+    <data>
+        <template id="sale_delivery_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+
+                        <style>
+                            .top_general_head {
+                            font-weight:bold;
+                            }
+                            .data_table_heading th {
+                            border:2px solid grey;
+                            padding-left:2px;
+                            }
+                            .data_table_body td {
+                            border:2px solid grey;
+                            padding-left:2px;
+                            }
+                            .vertical_middle {
+                            text-align:center;
+                            vertical-align:middle;
+                            }
+                            .important_note {
+                            margin-top:200px;
+                            }
+                            .container p, h6 {
+                            font-weight: bold;
+                            }
+                            .margin_top {
+                            margin-top:-20px;
+                            font-size:14px;
+                            }
+                            .last_table {
+                            margin-top:70px;
+
+                            }
+                            .bold {
+                            font-weight:bold;
+                            }
+
+                        </style>
+                        <div class="page">
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <td width="5%" class="top_general_head">D.O.NO</td>
+                                        <td width="10%">:
+                                            <span t-field="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="2%" class="top_general_head">D.O.Date</td>
+                                        <td width="20%">:
+                                            <span t-field="o.scheduled_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="2%" class="top_general_head">Agent</td>
+                                        <td width="20%">: <span t-field="o.current_user"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="2%" class="top_general_head">Customer</td>
+                                        <td width="20%">:
+                                            <span t-field="o.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="2%" class="top_general_head">Note</td>
+                                        <td width="20%">:
+                                            <span t-field="o.state"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="15%" class="top_general_head">Godown</td>
+                                        <td width="15%">: <span t-field="o.location_id"/> </td>
+                                        <td width="70%" style="padding-right:40px;" class="text-right">
+                                            <span class="top_general_head" style="padding-right:10px;">Order By</span>
+                                            :
+                                           <span t-field="o.current_user"/>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="mt-3" width="100%">
+                                <thead class="data_table_heading">
+                                    <tr>
+                                        <th width="5%" class="vertical_middle">Sr</th>
+                                        <th width="30%">Item Description</th>
+                                        <th width="15%">Article</th>
+                                        <th width="15%">Finish</th>
+                                        <th width="15%" class="text-left pl-2">Unit</th>
+                                        <th width="15%" class="text-left pl-2">Quantity</th>
+                                    </tr>
+                                </thead>
+
+                                <!-- here we will apply the loop-->
+                                <tbody class="data_table_body">
+                                    <t t-set="count_id" t-value="0"/>
+                                    <t t-set="total_quantity" t-value="0"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                    <t t-foreach="o.move_line_ids_without_package" t-as="line">
+                                        <t t-set="count_id" t-value="count_id+1"/>
+                                        <tr>
+                                            <td class="vertical_middle"> <t t-esc="count_id"/> </td>
+                                            <td><span t-field="line.product_id.name"/></td>
+                                            <td><span t-field="line.product_id.article_no"/></td>
+                                            <td><span t-field="line.product_id.finish_no"/></td>
+                                            <td><span t-field="line.product_uom_id"/></td>
+                                            <td class="text-left pl-2"><span t-field="line.qty_done"/></td>
+                                        <t t-set="total_quantity" t-value="total_quantity+line.qty_done"/>
+                                        </tr>
+
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <table width="100%" class="mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td width="60%" class="text-right pr-4 font-weight-bold data_table_heading">
+                                            Total:
+                                        </td>
+                                        <td width="40%" class="text-right font-weight-bold" style="padding-right:100px;"><t t-esc="total_quantity"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <!-- here is the code for the important note -->
+                            <div class="container text-left important_note">
+                                <h4 class="text-uppercase font-weight-bold mt-2 pb-2">Important Note</h4>
+                                <p style="font-size:14px;">1- Return acceptable within 1 month form the date of
+                                    purchase.
+                                </p>
+                                <p class="margin_top">2- 10% service charges will be deducted on return.</p>
+                                <p class="margin_top">3- 3% excess goods will be returnable</p>
+                                <p class="margin_top">4- Variation inm color 4 design of titles can be changeable before
+                                    fixing
+                                </p>
+                                <p class="margin_top">5- No gaurantee/claim of all imported Tiles/Sanitary fittings.</p>
+                                <p class="margin_top">6- Transport chares will be paid by the customer.</p>
+                                <p class="margin_top">7- No responsibility of quantity/broken Tiles after customer
+                                    acknowledge
+                                </p>
+                                <h6 class="mt-3">Note: Exchange or Return wil be acceptable within one month form the
+                                    date
+                                    of purchase only
+                                    within
+                                    <br/>
+                                    original copy of bill.
+                                </h6>
+                                <hr style="border:1px solid black;"></hr>
+                                <h6 class="mt-2">It is Certified that the above items are received packed cartons and no
+                                    box
+                                    and no box is
+                                    demaged at the time of delivery/receiving.
+                                </h6>
+                            </div>
+
+                            <table width="100%" class="last_table">
+                                <thead>
+                                    <tr>
+                                        <th width="25% text-center">_______________________</th>
+                                        <th width="25% text-center">_______________________</th>
+                                        <th width="25% text-center">_______________________</th>
+                                        <th width="25% text-center">_______________________</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="25% text-center" class="pl-5  font-weight-bold">Issued By</td>
+                                        <td width="25% text-center" class="pl-5  font-weight-bold">Delivered By</td>
+                                        <td width="25% text-center" class="pl-5  font-weight-bold">Verified By</td>
+                                        <td width="25% text-center" class="pl-5  font-weight-bold">Received By</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table width="100%" class="mt-5">
+                                <tbody>
+                                    ,
+                                    <tr>
+                                        <td width="50%" class="text-left pl-3 pb-0"><span t-field="o.current_user"/></td>
+                                        <td width="50%" class="text-right font-weight-bold" style="padding-right:35px;">
+                                            Name: __________________
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%" class="text-left">_______________</td>
+                                        <td width="50%" class="text-right font-weight-bold" style="padding-right:35px;">
+                                            Mobile#: __________________
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%" class="text-left font-weight-bold">sales Consultant</td>
+                                        <td width="50%" class="text-left font-weight-bold"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%" class="text-left font-weight-bold">0305972284</td>
+                                        <td width="50%" class="text-left font-weight-bold"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
