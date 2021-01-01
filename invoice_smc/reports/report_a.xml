@@ -24,4 +24,14 @@
             name="invoice_smc.invoice_smc_without_land"
             file="invoice_smc.invoice_smc_without_land"
             paperformat="paperformat_report_invoice_report"/>
+    
+    
+    <report
+            id="invoice_smc_report_without_disc"
+            model="account.move"
+            string="Without Discount Landscape "
+            report_type="qweb-pdf"
+            name="invoice_smc.invoice_smc_without_land_disc"
+            file="invoice_smc.invoice_smc_without_land_disc"
+            paperformat="paperformat_report_invoice_report"/>
 </odoo>
