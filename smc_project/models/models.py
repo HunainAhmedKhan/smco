@@ -52,6 +52,8 @@ class in_invoicing(models.Model):
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+    
+    
 
     state = fields.Selection([
         ('draft', 'Quotation'),
@@ -65,8 +67,12 @@ class SaleOrder(models.Model):
     max_discount = fields.Float(string='Max Disccount', compute='compute_max_disccount', default=0)
 
     allowed_discount = fields.Float(string='Allowed Disccount', related='user_id.allowed_discount')
-    user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.user, readonly=True)
+    user_id = fields.Many2one('res.users', string='User', ,compute="compute_self_id")
     payment_status = fields.Selection([('paid', 'Paid'), ('not_paid', 'Not Paid')], string="Invoice Status", compute="_check_status")
+    
+    def compute_self_id(self):
+        self.user_id=self.env.uid
+
 
     def _check_status(self):
         for i in self:
