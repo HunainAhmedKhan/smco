@@ -29,7 +29,7 @@ class smc(models.Model):
     def _check_status(self):
         for i in self:
             search_invoice = self.env['account.move'].search([('invoice_origin', '=', i.origin)], limit=1)
-            if search_invoice.invoice_payment_state=='paid':
+            if search_invoice.payment_state=='paid':
                 i.invoice_status="paid"
             else:
                 i.invoice_status = "not_paid"
