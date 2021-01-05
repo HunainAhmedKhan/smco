@@ -93,7 +93,7 @@ class SaleOrder(models.Model):
             maximum = []
             for rec in i.order_line:
                 maximum.append(rec.discount)
-                diss = max(maximum)
+            diss = max(maximum)
             i.max_discount = diss
 
 
