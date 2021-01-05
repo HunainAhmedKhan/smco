@@ -12,9 +12,9 @@
                 <xpath expr="//field[@name='standard_price']" position="attributes">
                     <attribute name="groups">stock.group_stock_manager</attribute>
                 </xpath>
-                <xpath expr="//button[@name='561']" position="attributes">
+<!--                 <xpath expr="//button[@name='561']" position="attributes">
                     <attribute name="groups">stock.group_stock_manager</attribute>
-                </xpath>
+                </xpath> -->
 
             </field>
         </record>
@@ -31,9 +31,9 @@
                 <xpath expr="//field[@name='standard_price']" position="attributes">
                     <attribute name="groups">stock.group_stock_manager</attribute>
                 </xpath>
-                <xpath expr="//button[@name='561']" position="attributes">
+<!--                 <xpath expr="//button[@name='561']" position="attributes">
                     <attribute name="groups">stock.group_stock_manager</attribute>
-                </xpath>
+                </xpath> -->
             </field>
         </record>
 
