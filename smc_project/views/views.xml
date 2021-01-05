@@ -83,7 +83,7 @@
                 </xpath>
 
 
-                <xpath expr="//button[@name='action_view_delivery']" position="replace">
+<!--                 <xpath expr="//button[@name='action_view_delivery']" position="replace">
                     <button type="object"
                             name="action_view_delivery"
                             class="oe_stat_button"
@@ -92,7 +92,7 @@
                         <field name="delivery_count" widget="statinfo" string="Delivery"/>
                     </button>
                 </xpath>
-
+ -->
 
             </field>
         </record>
