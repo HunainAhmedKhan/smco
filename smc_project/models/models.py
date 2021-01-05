@@ -88,7 +88,7 @@ class SaleOrder(models.Model):
         for sale_order in self:
             print("Helloo")
 
-            if sale_order.max_discount >= sale_order.allowed_discount:
+            if sale_order.max_discount > sale_order.allowed_discount:
 
                 raise UserError(_('Your discount limit is lesser then allowed discount.Click on "Ask for Approval" for approval'))
 
