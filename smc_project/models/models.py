@@ -71,7 +71,8 @@ class SaleOrder(models.Model):
     payment_status = fields.Selection([('paid', 'Paid'), ('not_paid', 'Not Paid')], string="Invoice Status", compute="_check_status")
     
     def compute_self_id(self):
-        self.user_id=self.env.uid
+        for i in self:
+            i.user_id=self.env.uid
 
 
     def _check_status(self):
