@@ -66,6 +66,15 @@ class SaleOrder(models.Model):
 
     allowed_discount = fields.Float(string='Allowed Disccount', related='user_id.allowed_discount')
     user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.user, readonly=True)
+    payment_status = fields.Selection([('paid', 'Paid'), ('not_paid', 'Not Paid')], string="Invoice Status", compute="_check_status")
+
+    def _check_status(self):
+        for i in self:
+            search_invoice = self.env['account.move'].search([('invoice_origin', '=', i.origin)], limit=1)
+            if search_invoice.payment_state in ['paid','partial']:
+                i.payment_status="paid"
+            else:
+                i.payment_status = "not_paid"
 
     def from_manager_approval(self):
         self.state='manager'
