@@ -58,7 +58,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_confirm']" position="replace">
-                    <button name="action_confirm" states="sent,sale,manager,ceo,draft" string="Confirm Sale"
+                    <button name="action_confirm" states="sent,manager,ceo,draft" string="Confirm Sale"
                             class="btn-primary o_sale_confirm" type="object"/>
                 </xpath>
                 <xpath expr="//button[@name='action_cancel']" position="replace">
