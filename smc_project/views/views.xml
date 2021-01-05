@@ -71,7 +71,7 @@
                             string="Approval From Manager"/>
                 </xpath>
 
-                <xpath expr="//button[@name='action_confirm'][2]" position="after">
+                <xpath expr="//button[@name='action_confirm']" position="after">
                    
                     <button name="from_ceo_approval" states="manager" type="object" class="oe_highlight"
                             string="Approval From CEO"/>
