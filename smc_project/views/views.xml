@@ -67,13 +67,12 @@
                 </xpath>
 
                 <xpath expr="//button[@name='action_confirm'][2]" position="replace">
-                    <button name="action_confirm" states="sent,manager,draft" string="Confirm Sale"
-                            class="btn-primary o_sale_confirm" type="object" invisible="1"/>
+                     <button name="from_manager_approval" states="draft,sent" type="object" class="oe_highlight"
+                            string="Approval From Manager"/>
                 </xpath>
 
                 <xpath expr="//button[@name='action_confirm'][2]" position="after">
-                    <button name="from_manager_approval" states="draft,sent" type="object" class="oe_highlight"
-                            string="Approval From Manager"/>
+                   
                     <button name="from_ceo_approval" states="manager" type="object" class="oe_highlight"
                             string="Approval From CEO"/>
                 </xpath>
