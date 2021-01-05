@@ -88,7 +88,7 @@
                             name="action_view_delivery"
                             class="oe_stat_button"
                             icon="fa-truck"
-                            attrs="{'invisible': [('payment_status', 'in', ['partial','paid'])]}" >
+                            attrs="{'invisible': [('payment_status', 'not in', ('partial','paid'))]}" >
                         <field name="delivery_count" widget="statinfo" string="Delivery"/>
                     </button>
                 </xpath>
