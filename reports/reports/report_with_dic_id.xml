@@ -8,13 +8,13 @@
                     <style>
                         .p1{
                         margin-top:-20px;
-                        font-size:12px;
+                        font-size:15px;
                         font-weight:700;
 
                         }
                         span{
                         margin-top:-20px;
-                        font-size:12px;
+                        font-size:15px;
                         font-weight:normal;
                         }
                         <!--                        .p2{-->
@@ -32,15 +32,15 @@
                         }
                         .div_headings {
                         border:1px solid;
-                        text-align: left;
-                        font-size:12px;
+                        text-align: center;
+                        font-size:15px;
                         margin-top:2em;
                         vertical-align:middle;
                         }
                         .div_tb {
                         border:1px solid;
                         text-align: center;
-                        font-size:10px;
+                        font-size:15px;
                         <!--                        margin-top:2em;-->
                         <!--                        vertical-align:middle;-->
                         }
@@ -75,7 +75,7 @@
 
                                     </p>
                                 </div>
-                                <div class="col-3 ">
+                                <div class="col-4 ">
                                     <p class="p1">Date :
                                         <span class='p2' t-field="o.date_order"/>
                                     </p>
@@ -89,7 +89,7 @@
                         <div class="container">
                             <table class="table table-bordered table-sm" style="margin-top:5px;">
 
-                                <tr style="font-size:12px;text-align:center;">
+                                <tr style="font-size:14px;text-align:center;">
                                     <th>
                                         <strong>Sr</strong>
                                     </th>
@@ -123,6 +123,8 @@
                                 <tbody>
                                     <t t-set="count_id" t-value="0"/>
                                     <t t-set="current_subtotal" t-value="0"/>
+                                    <t t-set="total_quantity" t-value="0"/>
+
 
                                     <t t-foreach="o.order_line" t-as="line">
                                         <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
@@ -135,7 +137,7 @@
                                             <t t-if="not line.display_type">
                                                 <t t-set="count_id" t-value="count_id+1"/>
                                                 <td name="td_id" class="text-center"
-                                                    style="padding:0px; height:0%; font-size:9px;">
+                                                    style="padding:0px; height:0%; font-size:12px;">
                                                     <t t-esc="count_id"/>
                                                 </td>
                                                 <td class="div_tb" style="padding:0px; height:0%;">
@@ -156,22 +158,25 @@
                                                 <td class="div_tb" style="padding:0px; height:0%;">
                                                     <span t-field="line.product_id.list_price"/>
                                                 </td>
-                                                <td class="div_tb" style="padding:0px; height:0%; font-size:12px; vertical-align:middle;">
+                                                <td class="div_tb"
+                                                    style="padding:0px; height:0%; font-size:12px; vertical-align:middle;">
                                                     <t t-set="net_payable"
                                                        t-value="(line.product_id.list_price * line.product_uom_qty)"/>
                                                     <t t-esc="net_payable"/>
                                                     <!--                                                    <span t-field="line.price_subtotal"/>-->
                                                 </td>
                                                 <td class="div_tb" style="padding:0px; height:0%">
-                                                    <span t-field="line.discount" t-options='{"widget": "float", "precision": 2}'></span>
+                                                    <span t-field="line.discount"></span>
 
                                                 </td>
+                                                <t t-set="total_quantity"
+                                                   t-value="total_quantity+line.product_uom_qty"/>
                                             </t>
                                             <t t-if="line.display_type == 'line_section'">
                                                 <td class="div_tb"
-                                                    style="padding:0px; height:0%; background-color: black; color: white; text-align:left; text-transform:uppercase;font-weight:bold; padding-left:35px;"
+                                                    style="padding:0px; height:0%; background-color: black; color: white; text-align:left; text-transform:uppercase;font-weight:bold; padding-left:35px;font-size:12px;"
                                                     name="td_section_line" colspan="99">
-                                                    <span  t-field="line.name"/>
+                                                    <span t-field="line.name"/>
                                                 </td>
                                                 <t t-set="current_section" t-value="line"/>
                                                 <t t-set="current_subtotal" t-value="0"/>
@@ -188,12 +193,12 @@
                                             <tr class=" text-right" style="padding:0;">
 
                                                 <td name="td_section_subtota1l" colspan="99" style="padding:0;">
-                                                    <strong style="padding-right:240px; font-size:13px;" class="mr16">
+                                                    <strong style="padding-right:325px; font-size:13px;" class="mr16">
                                                         Subtotal:
                                                     </strong>
                                                     <span style="padding-right:25px;"
                                                           t-esc="current_subtotal"
-                                                          t-options='{"widget": "float", "precision": 0}'
+                                                          t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
                                                     />
                                                 </td>
                                             </tr>
@@ -201,6 +206,31 @@
                                     </t>
                                 </tbody>
                             </table>
+                            <div class="container" style="margin-top:-10px;">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td width="8%"></td>
+
+                                            <td width="2%"></td>
+                                            <td width="5%"></td>
+                                            <td width="7%"
+                                                style="; padding-left:px; text-align: right; font-weight:bold; font-size:15px;">
+                                                <t t-esc="total_quantity"/>
+                                            </td>
+                                            <td width="8%"
+                                                style=" padding-left:20px; text-align: right; font-weight:bold;">
+                                                <!--                                            <t t-esc="dis_amount"/>-->
+                                            </td>
+                                            <td width="8%"
+                                                style=" padding-left:15px; text-align: right; font-weight:bold;">
+                                                <!--                                            <t t-esc="total_amount"/>-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                             <div class="container">
                                 <!--                                <div class="row justify-content-end" style="height:11px;margin-bottom:5px;">-->
@@ -216,38 +246,38 @@
                             </div>
                             <div class="container">
                                 <div class="row justify-content-end" style="height:11px;margin-bottom:15px;">
-                                    <div class="col-3" style="font-size:13px;text-align:right;">
+                                    <div class="col-3" style="font-size:15px;text-align:right;">
                                         <p style="font-weight:bold;">Grand Total :</p>
                                     </div>
                                     <div class="col-3" style="margin-top:-10px;">
-                                        <p style="text-align:right; font-weight:bold; font-size:12px; padding-top:10px;">
+                                        <p style="text-align:right; font-weight:bold; font-size:15px; padding-top:10px;">
                                             <t t-set="grand_total"
                                                t-value="(o.amount_untaxed + o.amount_discount)"/>
                                             <t t-esc="grand_total"/>
-<!--                                                                                        <span t-field="o.amount_untaxed"/>-->
+                                            <!--                                                                                        <span t-field="o.amount_untaxed"/>-->
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="row justify-content-end" style="height:11px;margin-bottom:15px;">
-                                    <div class="col-3" style="font-size:13px;text-align:right;">
+                                    <div class="col-3" style="font-size:15px;text-align:right;">
                                         <p style="font-weight:bold;">Discount :</p>
                                     </div>
                                     <div class="col-3  border-bottom" style="margin-top:-10px;">
                                         <p style="text-align:right; font-weight:bold;">
-                                            <span t-field="o.amount_discount" t-options='{"widget": "float", "precision": 2}'/>
+                                            <span t-field="o.amount_discount"/>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="row justify-content-end" style="height:11px;margin-bottom:15px;">
-                                    <div class="col-3" style="font-size:13px;text-align:right;">
+                                    <div class="col-3" style="font-size:15px;text-align:right;">
                                         <p style="font-weight:bold;">Net Payable:</p>
                                     </div>
                                     <div class="col-3  border-bottom" style="margin-top:-5px;">
-                                        <p style="text-align:right; font-size:12px; font-weight:bold;">
+                                        <p style="text-align:right; font-size:15px; font-weight:bold;">
                                             <t t-set="net_payable"
                                                t-value="(grand_total - o.amount_discount)"/>
                                             <t t-esc="net_payable"/>
@@ -261,7 +291,7 @@
                             </div>
                             <div class="container">
                                 <div class="row justify-content-end" style="height:11px;margin-bottom:15px;">
-                                    <div class="col-3" style="font-size:13px;text-align:right;">
+                                    <div class="col-3" style="font-size:15px;text-align:right;">
                                         <p style="font-weight:bold;">Freight:</p>
                                     </div>
                                     <div class="col-3  border-bottom">
@@ -273,7 +303,7 @@
                             </div>
                             <div class="container">
                                 <div class="row justify-content-end" style="height:11px;margin-bottom:15px;">
-                                    <div class="col-3" style="font-size:13px;text-align:right;">
+                                    <div class="col-3" style="font-size:15px;text-align:right;">
                                         <p style="font-weight:bold;">Balance:</p>
                                     </div>
                                     <div class="col-3  border-bottom">
@@ -288,23 +318,24 @@
                             <div class="container">
                                 <div>
                                     <div class="col-12" style="padding-left:0px; margin-left:-10px;">
-                                        <p style="font-weight:bold;color:black; font-size:13px;">Terms And Condition</p>
-                                         <span t-field="o.note"/>
+                                        <p style="font-weight:bold;color:black; font-size:15px;">Terms And Condition</p>
                                     </div>
                                 </div>
-                              
+                                <div>
+                                    <span t-field="o.note"/>
+                                </div>
                             </div>
                             <br/>
                         </div>
                         <div class="container row" style="margin-top:4em; font-size:15px;">
                             <div class="col-4">
-                                ____________________________
+                                __________________________________
                             </div>
                             <div class="col-4">
-                                ____________________________
+                                __________________________________
                             </div>
                             <div class="col-4">
-                                ____________________________
+                                __________________________________
                             </div>
                         </div>
                         <div class="container row" style="font-size:15px;">
@@ -318,9 +349,60 @@
                                 Customer
                             </div>
                         </div>
+                        <div class="col-12" style="padding-left:25px;margin-top:20px;">
+                            Modified By:
+                            <span t-field="o.user_id.name"/>
+                            Date:
+                            <span t-field="o.create_date"/>
+                            Created By:
+                            <span t-field="o.write_uid.name"/>
+                            Date
+                            <span t-field="o.write_date"/>
+                        </div>
                     </div>
                 </t>
             </t>
         </t>
+    </template>
+    <template t-name="web.external_layout_standard">
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style" height="10%"
+             width="100%">
+            <div class="row" id="logo_center">
+                <div class="col-12 mb10">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                </div>
+            </div>
+        </div>
+        <!-- support for custom footer -->
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout" position="attributes"
+             id="footer">
+            <attribute name="t-if">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6" id="footer_center">
+                        <!-- here you can put your footer line -->
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </attribute>
+        </div>
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout" position="after">
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                <t t-if="custom_footer" t-raw="custom_footer"/>
+            </div>
+        </div>
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"
+             t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-5">
+                <xpath expr="." position="inside">
+                    <link rel="stylesheet" type="text/css" href="/bookings/static/src/css/pdf_report_style.css"/>
+                </xpath>
+                <!-- This div ensures that the address is not cropped by the header. -->
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-raw="0"/>
+
+        </div>
     </template>
 </odoo>
