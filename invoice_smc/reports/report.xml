@@ -2,7 +2,7 @@
     <data>
          <report
                 id="invoice_report"
-                string="Invoice Without Discount"
+                string="Invoice With Discount"
                 model="account.move"
                 report_type="qweb-pdf"
                 name="invoice_smc.invoice_smc_without_id"
